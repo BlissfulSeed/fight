@@ -37,6 +37,9 @@ htmlcov/
 # Jupyter
 .ipynb_checkpoints/
 
+# Database
+*.db
+
 # OS
 .DS_Store
 Thumbs.db

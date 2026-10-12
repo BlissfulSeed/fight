@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOTE BATTLE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="vote-bar">
+        <div class="vote-count left-side">
+            <span class="count-number" id="left-count">0</span>
+            <span class="count-label">{{ left_name }}</span>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="vote-count right-side">
+            <span class="count-number" id="right-count">0</span>
+            <span class="count-label">{{ right_name }}</span>
+        </div>
+    </header>
+
+    <div class="progress-bar-wrap">
+        <div class="progress-left" id="progress-left"></div>
+        <div class="progress-right" id="progress-right"></div>
+    </div>
+
+    <main class="arena">
+        <div class="character left-character">
+            <div class="character-img-wrap">
+                <img src="/static/images/left.png" alt="{{ left_name }}">
+            </div>
+            <h2>{{ left_name }}</h2>
+            <button class="vote-btn vote-left" onclick="startVote('left')">
+                VOTE <span class="btn-name">{{ left_name }}</span>
+            </button>
+        </div>
+
+        <div class="vs-center">
+            <span>VS</span>
+        </div>
+
+        <div class="character right-character">
+            <div class="character-img-wrap">
+                <img src="/static/images/right.png" alt="{{ right_name }}">
+            </div>
+            <h2>{{ right_name }}</h2>
+            <button class="vote-btn vote-right" onclick="startVote('right')">
+                VOTE <span class="btn-name">{{ right_name }}</span>
+            </button>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="vote-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2>Vote for <span id="modal-character-name"></span></h2>
+            <p>Send exactly <strong id="modal-amount">5</strong> USDT <span class="network-tag">BEP-20 on BSC</span> to:</p>
+            <div class="wallet-box">
+                <code id="modal-wallet"></code>
+                <button class="copy-btn" onclick="copyAddress()">Copy</button>
+            </div>
+            <p class="warning">Make sure you're sending USDT on the BSC network!</p>
+            <div class="tx-section">
+                <label>After sending, paste your transaction hash:</label>
+                <input type="text" id="tx-hash-input" placeholder="0x..." spellcheck="false">
+                <button class="submit-btn" id="submit-vote-btn" onclick="submitVote()">
+                    Verify &amp; Vote
+                </button>
+            </div>
+            <div id="vote-status" class="vote-status"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Wallet: <code id="footer-wallet"></code></p>
+            <p>Vote cost: <strong><span id="footer-amount">5</span> USDT</strong> (BEP-20 on BSC)</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
